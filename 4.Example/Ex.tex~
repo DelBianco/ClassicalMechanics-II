@@ -1,0 +1,139 @@
+\documentclass[a4paper,11pt]{exam}
+	\usepackage{graphicx}
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+	\usepackage{listings}
+	\usepackage{color}
+	\usepackage{amsmath}
+	\usepackage{enumerate}
+	\usepackage{caption}
+	\usepackage{verbatim}
+	\usepackage{subcaption}
+	\usepackage{tikz}
+	\usepackage{graphics}
+	\usepackage{txfonts}
+	\usepackage{listings}
+	\usepackage{braket,mleftright}
+	\mleftright
+	\definecolor{dkgreen}{rgb}{0,0.5,0}
+	\definecolor{gray}{rgb}{0.5,0.5,0.5}
+	\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+	\lstset{frame=tb,
+	  language=Python,
+	  aboveskip=3mm,
+	  belowskip=3mm,
+	  showstringspaces=false,
+	  columns=flexible,
+	  basicstyle={\small\ttfamily},
+	  numbers=none,
+	  numberstyle=\tiny\color{gray},
+	  keywordstyle=\color{blue},
+	  commentstyle=\color{dkgreen},
+	  stringstyle=\color{mauve},
+	  breaklines=true,
+	  breakatwhitespace=true
+	  tabsize=3
+	  }
+	
+
+\begin{document}
+\begingroup
+	  \bf \Large Mecânica Clássica II\\
+	  \indent \normalsize André Del Bianco Giuffrida
+	\endgroup
+	\\ \quad
+	\\
+	\large{Exemplo visto em aula}
+	\\
+	Um Pêndulo duplo! para pequenas oscilações:
+	\normalsize
+	\[ \mathcal{L} = \frac{1}{2}m\dot\eta_1^2 + \frac{1}{2}m(\dot\eta_1 + \dot\eta_2)^2 - V(\eta_1,\eta_2)\]
+	\[ V(\eta_1,\eta_2) = \frac{mg}{l} \Bigg(3 + \frac{2\eta_1^2 + \eta_2^2}{2} \Bigg)\]
+	
+	\[ \mathcal{L} = \frac{1}{2}m\Bigg( \dot\eta_1^2 + \Big(\dot\eta_1 + \dot\eta_2\Big)^2\Bigg) - \frac{1}{2} \frac{mg}{l}\Big(2\eta_1^2 + \eta_2^2\Big) + V_0\]
+	
+	Usando a notação mais genérica:
+	
+	\[ \mathcal{L} = \bra{\dot\eta\,}M\ket{\,\dot\eta} - \bra{\eta\,}V\ket{\,\eta} \]
+	
+	Assim podemos chegar as matrizes:
+	
+	\[
+	M = m\begin{pmatrix}
+		2 & 1 \\
+		1 & 1
+		\end{pmatrix}
+		\quad
+		\text{e}
+		\quad
+	V = \frac{mg}{l}
+		\begin{pmatrix}
+			2 & 0 \\
+			0 & 1
+		\end{pmatrix}
+	\]
+	
+	E assim chegamos a Equação de Auto-Valores:
+	
+	\[(V-M\omega^2)\ket{\,\eta} = 0 \quad \text{Fugindo da solução trivial} \quad \det(V-M\omega^2) = 0\]
+	
+	\[
+	\det \begin{pmatrix}
+		2\frac{mg}{l} - 2m\omega^2 & -m\omega^2 \\
+		-m\omega^2 & \frac{mg}{l} - m\omega^2
+		\end{pmatrix} = 0
+	\]
+	
+	\[ 2 \Big(\frac{mg}{l} - m\omega^2\Big)^2 - m^2\omega^4 = 0 \]
+	
+	\[ 2\frac{g^2}{l^2} + 2\omega^4 - 4\frac{g}{l}\omega^2 - \omega^4 = 0 \quad \text{usando,}\quad \omega_0^2 = \frac{g}{l}\]
+	
+	\[ 2\omega_0^4 + \omega^4 - 4\omega_0^2\omega^2 = 0\]
+	
+	\[ \omega^2 = 2\omega_0^2 \pm \sqrt{4\omega_0^4 - 2\omega_0^4} \]
+	
+	\[ \omega^2 =\omega_0^2\Big(2 \pm \sqrt{2}\Big) \]
+	
+	Obtemos assim dois valores para $\omega^2$, substituindo novamente na equação de Auto-Valores.
+	
+	\[   \quad \Big(V-M\omega_0^2(2+\sqrt{2})\Big)\ket{\,\eta^{(1)}} = 0 \]
+	
+	\[	\quad \begin{pmatrix}
+			2m\omega_0^2 - 2m\omega_1^2 & -m\omega_1^2 \\
+			-m\omega_1^2 & m\omega_0^2 - m\omega_1^2
+		\end{pmatrix}
+		\begin{pmatrix}
+			\eta_1^{(1)}\\
+			\eta_2^{(1)}
+		\end{pmatrix} = 
+		\begin{pmatrix}
+			0\\
+			0
+		\end{pmatrix}	\]
+	
+     \[(1) \quad  2\omega_0^2 \, \eta_1^{(1)} - 2\omega_0^2\Big(2 + \sqrt{2}\Big) \, \eta_1^{(1)} - \omega_0^2\Big(2 + \sqrt{2}\Big) \, \eta_2^{(1)} =0\]
+	\[(2) \quad  -\omega_0^2\Big(2 + \sqrt{2}\Big) \, \eta_1^{(1)} +  \omega_0^2 \, \eta_2^{(1)} - \omega_0^2\Big(2 + \sqrt{2}\Big) \, \eta_2^{(1)}  = 0\]
+	
+	\[(1) \quad  2 \eta_1^{(1)}-2\Big(2 + \sqrt{2}\Big) \eta_1^{(1)} -\Big(2 + \sqrt{2}\Big) \eta_2^{(1)} =0\]
+	\[(2) \quad  -\Big(2 + \sqrt{2}\Big) \eta_1^{(1)} + \eta_2^{(1)} - \Big(2 + \sqrt{2}\Big) \eta_2^{(1)}  = 0\]
+	
+	\[\frac{-2(1 + \sqrt{2}\Big)}{\Big(2 + \sqrt{2}\Big) }  = \eta_2^{(1)} \]
+		
+	\[\ket{\eta^{(1)}} = \begin{pmatrix}
+			1\\
+			\frac{-2(1 + \sqrt{2}\Big)}{\Big(2 + \sqrt{2}\Big)}
+	  \end{pmatrix}
+	\]
+	Analogamente para a segunda solução de $\omega$:
+	\[ \quad \Big(V-M\omega_0^2(2-\sqrt{2})\Big)\ket{\,\eta^{(2)}} = 0 \]
+	\[\ket{\eta^{(2)}} = \begin{pmatrix}
+			1\\
+			\frac{-2(1 - \sqrt{2}\Big)}{\Big(2 - \sqrt{2}\Big)}
+	  \end{pmatrix}
+	\]
+	
+	
+	
+	
+\end{document}

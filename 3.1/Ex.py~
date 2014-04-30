@@ -1,0 +1,31 @@
+def RK4(f):
+    return lambda t, y, dt: (
+            lambda dy1: (
+            lambda dy2: (
+            lambda dy3: (
+            lambda dy4: (dy1 + 2*dy2 + 2*dy3 + dy4)/6
+            )( dt * f( t + dt  , y + dy3   ) )
+	    )( dt * f( t + dt/2, y + dy2/2 ) )
+	    )( dt * f( t + dt/2, y + dy1/2 ) )
+	    )( dt * f( t       , y         ) )
+ 
+ 
+from math import sin, cos
+import sys
+
+g,a = 9.8, 100
+y0 = 0
+while y0 <= 3:
+	y0 = y0 + 0.5
+	O2,dO = 0, 0.1
+	while O2 <= 2 :
+		O2 = O2 + dO
+		dy = RK4(lambda t, y: sin(y)*(g/a - O2 * cos(y)))
+		t, y, dt = 0., y0, .01
+		while t <= 20 :
+			if abs(round(t) - t) < 1e-5:
+				print("%2.1f \t %4.6f \t %4.6f \t %4.6f" % (t,y,O2,y0))
+			t, y = t + dt, y + dy( t, y + dy( t, y, 0.001 ), dt )
+		print("\n")
+	print("\n")
+	print("\n")
